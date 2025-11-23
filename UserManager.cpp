@@ -30,6 +30,20 @@ void UserManager::addUser(){
 	Users.push_back(newUser);
 }
 
+bool UserManager::deleteUser(string u,string p) {
+	//删除用户
+	for (int i = 0; i < Users.size(); i++) {
+		if (Users[i]->getName() == u && Users[i]->getPassword() == p) {
+			delete Users[i];
+			Users.erase(Users.begin() + i);
+			return true;
+		}
+	}
+	//没找到用户，失败
+	return false;
+}
+
+
 User* UserManager::login() {
 	string u, p;
 	cout << "请输入用户名： ";
@@ -76,4 +90,21 @@ void UserManager::load() {
 	}
 	fin.close();
 	cout << "用户数据加载成功！共有" << Users.size() << "个用户。" << endl;
+}
+
+//接受用户名字，检查其是否存在
+bool UserManager::isUserExist(string u) {//User user作为参数不行，它是一个抽象类型；但是可以利用指针实现多态
+	for (int i = 0; i < Users.size(); i++) {
+		if (Users[i]->getName() == u) return true;
+	}
+	return false;
+}
+
+//外部（librarySystem类）只要传入cin的参数就行了，而不用在里面new Reader
+void UserManager::registerUser(string u, string p,int role) {
+	User* newUser = nullptr;
+	if (role == 1) newUser = new Admin(u, p);
+	else if (role == 2) newUser = new Reader(u, p);
+	Users.push_back(newUser);
+	return;
 }

@@ -18,6 +18,16 @@ void BookManager::addBook(Book book) {
     Books.push_back(book);
 }
 
+void BookManager::deleteBook(string is_bn) {
+    for (int i = 0; i < Books.size(); i++) {
+        if (Books[i].getISBN() == is_bn) {
+            Books.erase(Books.begin() + i);
+            break;
+        }
+    }
+}
+
+
 Book* BookManager::searchByISBN(string isbn) {
     for (int i = 0; i < Books.size(); i++) {
         if (Books[i].getISBN() == isbn) {

@@ -1,10 +1,26 @@
-#include <iostream>
-#include "BookManager.h" // 只需要引入 Manager，因为它里面包含了 Book
-#include "User.h" 
-#include "UserManager.h"
-using namespace std;
+#include "LibrarySystem.h"
+
+int main() {
+
+    LibrarySystem app;
+
+    app.run();
+
+    return 0;
+}
 
 
+
+
+
+
+
+
+
+
+
+
+/*
 int main() {
     //测试UserManager类，将其实例化
     UserManager usermanager;
@@ -19,7 +35,7 @@ int main() {
     
     return 0;
 }
-
+*/
 
 
 

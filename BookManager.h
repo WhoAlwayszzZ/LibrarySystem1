@@ -17,6 +17,8 @@ public:
     BookManager(); 
 
     void addBook(Book book);
+    void deleteBook(string is_bn);
+
     Book* searchByISBN(string isbn);
     vector<Book*> searchByAuthor(string author);
     void save();

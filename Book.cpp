@@ -21,11 +21,13 @@ void Book::setStock(int newStock) { stock = newStock; }
 void Book::setBorrowedCount(int newBorrowedCount) { borrowedCount = newBorrowedCount; }
 
 // 业务功能实现
-void Book::borrowBook() {
+bool Book::borrowBook() {
     if (stock > 0) {
         stock--;
         borrowedCount++;
+        return true;
     }
+    else return false;
 }
 
 void Book::returnBook() {

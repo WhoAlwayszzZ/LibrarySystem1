@@ -1,7 +1,6 @@
+Admin a1 12
+Admin a2 123
 Admin a3 1234
-Admin a3 1234
-Reader a1 12
-Admin a3 1234
-Admin a3 1234
-Reader a1 12
-Reader a2 123
+Reader r1 12
+Reader r2 123
+

@@ -36,7 +36,7 @@ public:
     void setBorrowedCount(int newBorrowedCount);
 
     // 业务功能声明
-    void borrowBook();
+    bool borrowBook();
     void returnBook();
     void displayBook();
 };

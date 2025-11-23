@@ -13,9 +13,12 @@ public:
 	UserManager();
 	~UserManager();
 	void addUser();
+	bool deleteUser(string u,string p);
 	User* login();//登录，返回值要给User指针
 	void save();
 	void load();
+	bool isUserExist(string u);
+	void registerUser(string u,string p,int role);
 };
 
 
