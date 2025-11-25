@@ -9,7 +9,8 @@ using namespace std;
 
 
 class BookManager;//前置声明，用在.h文件中，这样能够使得User.h在不需要包含BookManager.h的前提下声明带有BookManager参数的函数
-class UserManager;//接上一行——而BookManager.h的包含只需要在User.cpp中进行（※）
+class UserManager;//接上一行————而BookManager.h的包含只需要在User.cpp中进行（※）
+class BookRankingList;
 
 class User {
 protected:
@@ -23,10 +24,15 @@ public:
 	//get函数
 	string getName() const;
 	string getPassword() const;
+	//检查密码是否正确
 	bool checkPassword() const;
+	//查看用户信息
+	void printInfo() const;
+	//set函数
+	void setPassword(string newP);
 	//纯虚函数——等待子类实现,父类不需要实现，不需要给出定义
 	virtual string getRole()=0;
-	virtual void operate(BookManager &bookmanager, UserManager &usermanager)=0;
+	virtual void operate(BookManager& bookmanager, UserManager& usermanager, BookRankingList& bookrankinglist)=0;
 };
 
 
@@ -37,7 +43,7 @@ public:
 	Admin(string u, string p);
 	//重写纯虚函数
 	string getRole();
-	void operate(BookManager &bookmanager, UserManager &usermanager);
+	void operate(BookManager& bookmanager, UserManager& usermanager, BookRankingList& bookrankinglist);
 };
 
 
@@ -48,7 +54,7 @@ public:
 	Reader(string u, string p);
 	//重写纯虚函数
 	string getRole();
-	void operate(BookManager &bookmanager, UserManager &usermanager);
+	void operate(BookManager &bookmanager, UserManager &usermanager, BookRankingList &bookrankinglist);
 };
 
 #endif

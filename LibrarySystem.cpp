@@ -7,6 +7,8 @@ LibrarySystem::LibrarySystem() {
 	bookmanager = *bookmanagerP;
 	usermanager.load();
 	bookmanager.load();
+	BookRankingList* bookrankinglistP = new BookRankingList(bookmanager);
+	bookrankinglist = BookRankingList(bookmanager);
 }
 
 
@@ -42,14 +44,17 @@ void LibrarySystem::run() {
 		//登录
 		case 1: {
 			currentUser = handleLogin();
-			if (currentUser != nullptr) currentUser->operate(bookmanager,usermanager);
+			if (currentUser != nullptr) currentUser->operate(bookmanager,usermanager,bookrankinglist);
 			break;
 		}
 		case 2: {
 			handleRegister();
+			system("pause");
 			break;
 		}
 		case 0: {
+			bookmanager.save();
+			usermanager.save();
 			cout << "已退出系统" << endl;
 			system("pause");
 			return;
@@ -62,7 +67,7 @@ void LibrarySystem::run() {
 		}
 	}
 	//只有进行了1login后，才会继续进行到这里
-	currentUser->operate(bookmanager,usermanager);
+	currentUser->operate(bookmanager,usermanager,bookrankinglist);
 }
 
 void LibrarySystem::handleRegister() {
@@ -70,12 +75,20 @@ void LibrarySystem::handleRegister() {
 	string u, p;
 	cout << "请输入要注册的用户类型（1.管理员2.读者）";
 	cin >> i;
+	while (true) {
 	cout << "请输入用户名：";
 	cin >> u;
+	if (!usermanager.isUserExist(u)) break;
+	else cout << "该名称已被使用！" << endl;
+	system("pause");
+	}
+
 	cout << "请输入密码：";
 	cin >> p;
 
-	if (!usermanager.isUserExist(u)) usermanager.registerUser(u, p, i);
+	usermanager.registerUser(u, p, i);
+	cout << "已经成功注册，欢迎您，" << u << "!" << endl;
+	
 
 }
 

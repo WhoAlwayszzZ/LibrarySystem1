@@ -18,12 +18,23 @@ public:
 
     void addBook(Book book);
     void deleteBook(string is_bn);
+	void changeBookInfo(string is_bn);
 
+	// ËÑË÷¹¦ÄÜ
     Book* searchByISBN(string isbn);
+	Book* searchByTitle(string title);
     vector<Book*> searchByAuthor(string author);
     void save();
     void load();
+
+
+    
 	void displayAllBooks();
+    void displayTop10Books();
+	void top10ByBorrowedCount();
+    void top10ByPublishTime();
+
+    
 };
 
 #endif

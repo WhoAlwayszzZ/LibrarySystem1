@@ -43,6 +43,13 @@ bool UserManager::deleteUser(string u,string p) {
 	return false;
 }
 
+void UserManager::displayAllUsers() {
+	for (int i = 0; i < Users.size(); i++) {
+		Users[i]->printInfo();
+	}
+	return;
+}
+
 
 User* UserManager::login() {
 	string u, p;
@@ -107,4 +114,24 @@ void UserManager::registerUser(string u, string p,int role) {
 	else if (role == 2) newUser = new Reader(u, p);
 	Users.push_back(newUser);
 	return;
+}
+
+//虽然目的是展示用户信息，但是我们返回指针，在librarySystem的run逻辑中，我们再加入printInfo
+User* UserManager::searchByName(string u) {
+	for (int i = 0; i < Users.size(); i++) {
+		if (Users[i]->getName() == u) {
+			return Users[i];
+		}
+	}
+	return nullptr;
+}
+
+void UserManager::changeUserPassword(string u, string newP) {
+	User* user = searchByName(u);
+	if(user==nullptr) cout << "没有找到该用户，修改失败！" << endl;
+	else {
+	
+		user->setPassword(newP);
+		cout << "修改成功！" << endl;
+	}
 }
