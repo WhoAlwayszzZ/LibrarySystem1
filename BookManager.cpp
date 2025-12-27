@@ -95,7 +95,7 @@ void BookManager::save() {
     }
 
     for (int i = 0; i < Books.size(); i++) {
-        fout << Books[i].getTitle() << " "
+        fout << Books[i].getTitle() << "|"
             << Books[i].getAuthor() << " "
             << Books[i].getPublisher() << " "
             << Books[i].getISBN() << " "

@@ -1,13 +1,13 @@
 #include "LibrarySystem.h"
 
 LibrarySystem::LibrarySystem() {
-	UserManager * usermanagerP = new UserManager;
-	usermanager = *usermanagerP;
-	BookManager* bookmanagerP = new BookManager;
-	bookmanager = *bookmanagerP;
+	//UserManager * usermanagerP = new UserManager;
+	//usermanager = *usermanagerP;
+	//BookManager* bookmanagerP = new BookManager;
+	//bookmanager = *bookmanagerP;//这段代码导致内存泄漏，而且没有必要//构造函数会自动创建成员变量
 	usermanager.load();
 	bookmanager.load();
-	BookRankingList* bookrankinglistP = new BookRankingList(bookmanager);
+	//BookRankingList* bookrankinglistP = new BookRankingList(bookmanager);//同上
 	bookrankinglist = BookRankingList(bookmanager);
 }
 
@@ -45,6 +45,7 @@ void LibrarySystem::run() {
 		case 1: {
 			currentUser = handleLogin();
 			if (currentUser != nullptr) currentUser->operate(bookmanager,usermanager,bookrankinglist);
+			system("pause");
 			break;
 		}
 		case 2: {

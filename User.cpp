@@ -61,6 +61,7 @@ void Admin::operate(BookManager& bookmanager, UserManager& usermanager, BookRank
             cin.clear();
 			cin.ignore(numeric_limits<std::streamsize>::max(), '\n');
 			cout << "请输入数字！" << endl;
+            system("pause");
             continue;
         }
 
@@ -89,6 +90,7 @@ void Admin::operate(BookManager& bookmanager, UserManager& usermanager, BookRank
             Book book(t, a, p, is_bn, pr, s, pt);
 			bookmanager.addBook(book);
 			cout << "添加成功！" << endl;
+            system("pause");
             break;
         }
         //删除图书（待）
@@ -98,11 +100,13 @@ void Admin::operate(BookManager& bookmanager, UserManager& usermanager, BookRank
             cin >> is_bn;
             bookmanager.deleteBook(is_bn);
             cout << "已删除该书！" << endl;
+            system("pause");
             break;
         }
         //修改图书
         case 3: {
-
+			cout << "该功能正在开发中，敬请期待！" << endl;
+            system("pause");
             break;
         }
         //删除用户
@@ -113,21 +117,25 @@ void Admin::operate(BookManager& bookmanager, UserManager& usermanager, BookRank
             cout << "请输入要删除的用户的密码：";
             cin >> p;
             if (usermanager.deleteUser(u, p)) cout << "已删除该用户！" << endl;
-            else cout << "删除失败，该用户不存在！" << endl;;
+            else cout << "删除失败，该用户不存在！" << endl;
+            system("pause");
             break;
         }
         //显示所有图书
         case 5: {
             cout << "图书馆现有图书如下： " << endl;
             bookmanager.displayAllBooks();
+            system("pause");
             break;
         }
         case 6: {
 			bookrankinglist.run();
+            system("pause");
             break;
         }
         default: {
             cout << "请输入有效数字（0~5）！" << endl;
+            system("pause");
             break;
         }
         }
@@ -176,6 +184,7 @@ void Reader::operate(BookManager& bookmanager, UserManager& usermanager, BookRan
                 cout << "已找到：";
                 BookFound->displayBook();
             }
+			system("pause");
             break;
         }
         //搜索图书（作者）
@@ -191,6 +200,7 @@ void Reader::operate(BookManager& bookmanager, UserManager& usermanager, BookRan
                 }
             }
             else cout << "抱歉，暂无该作者书籍" << endl;
+            system("pause");
             break;
         }
         //借阅图书
@@ -207,6 +217,7 @@ void Reader::operate(BookManager& bookmanager, UserManager& usermanager, BookRan
                 }
                 else cout << "借阅失败，该书库存为0" << endl;
             }
+            system("pause");
             break;
         }
         //归还图书
@@ -219,16 +230,19 @@ void Reader::operate(BookManager& bookmanager, UserManager& usermanager, BookRan
             else {
                 BookFound->returnBook();
             }
+            system("pause");
             break;
         }
         //查看我的借阅（待开发）
         case 5: {
             cout << "该功能正在开发中，敬请期待！" << endl;
+            system("pause");
 			break;
         }
 
         case 6: {
             bookrankinglist.run();
+            system("pause");
             break;
         }
     } 

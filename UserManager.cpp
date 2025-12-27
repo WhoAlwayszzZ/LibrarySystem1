@@ -66,7 +66,7 @@ User* UserManager::login() {
 }
 
 void UserManager::save() {
-	ofstream fout(filename.c_str(),ios::app);
+	ofstream fout(filename.c_str());
 	if (!fout.is_open()) {
 		return;
 	}
